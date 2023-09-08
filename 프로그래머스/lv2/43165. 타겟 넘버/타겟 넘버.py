@@ -1,16 +1,23 @@
+from collections import deque
+
 answer = 0
 
 def solution(numbers, target):
-    n = len(numbers)
-    def dfs(idx, result):
+
+    def bfs():
         global answer
-        if idx == n:
-            if result == target:
-                answer += 1
-                return
-        else:
-            dfs(idx+1, result+numbers[idx])
-            dfs(idx+1, result-numbers[idx])
+        q = deque()
+        q.append([numbers[0], 0])
+        q.append([-numbers[0], 0])
+        while q:
+            temp, idx = q.popleft()
+            idx += 1
+            if idx < len(numbers):
+                q.append([temp+numbers[idx], idx])
+                q.append([temp-numbers[idx], idx])
+            else:
+                if temp == target:
+                    answer += 1
             
-    dfs(0, 0)
+    bfs()
     return answer
