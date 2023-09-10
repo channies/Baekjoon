@@ -1,20 +1,19 @@
-n = int(input())
+T = int(input())
 
-for i in range(n):
+for i in range(T):
     stack = []
-    m = input()
-    
-    for i in m:
-        if i == '(':
-            stack.append(i)
-        elif i == ')':
+    a=input()
+    for j in a:
+        if j == '(':
+            stack.append(j)
+        elif j == ')':
             if stack:
                 stack.pop()
             else:
-                print('NO')
+                print("NO")
                 break
     else:
         if not stack:
-            print('YES')
+            print("YES")
         else:
-            print('NO')
+            print("NO")
